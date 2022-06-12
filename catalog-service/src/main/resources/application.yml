@@ -1,0 +1,36 @@
+server:
+  port: 0
+
+
+spring:
+  application:
+    name: catalog-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/basic
+    username: postgres
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true # eureka
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka # eureka
+
+logging:
+  level:
+    com.example.catalogservice: DEBUG
+
+#
+#  <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+#  <property name="javax.persistence.jdbc.user" value="postgres"/>
+#  <property name="javax.persistence.jdbc.password" value="1234"/>
+#  <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/basic"/>
